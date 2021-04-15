@@ -8,9 +8,19 @@ public class TestRepository {
     public static void main(String[] args) {
         I_AlumnoRepository ar = new AlumnoRepository(Connector.getConnection());
         
-        //Alumno alumno = new Alumno("brian","sparnochia",28,4);
-        Alumno alumno = new Alumno("adrian","reinoso",50,10);
-
-        ar.save(alumno);
+        Alumno alumno1 = new Alumno("brian","sparnochia",28,4);
+        Alumno alumno2 = new Alumno("adrian","reinoso",50,10);
+        Alumno buscado = ar.getById(7);
+        
+        //ar.save(alumno1);
+        //alumno.setApellido("AMSTRONG");
+        //ar.update(alumno);
+        //ar.remove(alumno);
+        
+        if (buscado.getId() == 0){
+            System.out.println("El alumno no existe en la base de datos");
+        }else{
+            System.out.println(buscado.toString());
+        }
     }
 }

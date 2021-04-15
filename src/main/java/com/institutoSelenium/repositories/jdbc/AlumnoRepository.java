@@ -37,17 +37,53 @@ public class AlumnoRepository implements  I_AlumnoRepository {
 
     @Override
     public void remove(Alumno alumno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (alumno==null) return;
+        try (PreparedStatement ps = conn.prepareStatement(
+                "delete from ALUMNOS where id=?")){
+            ps.setInt(1, alumno.getId());
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Alumno alumno) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(alumno==null) return;
+        try (PreparedStatement ps = conn.prepareStatement(
+                "update ALUMNOS set NOMBRE=?, APELLIDO=?, EDAD=?, IDCURSO=? where ID=?"
+        )){
+            ps.setString(1, alumno.getNombre());
+            ps.setString(2, alumno.getApellido());
+            ps.setInt(3, alumno.getEdad());
+            ps.setInt(4, alumno.getIdCurso());
+            ps.setInt(5, alumno.getId());
+            ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public Alumno getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Alumno alumno = new Alumno();
+        try ( PreparedStatement ps = conn.prepareStatement(
+                "select * from ALUMNOS where id=?"
+        )){
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                alumno.setId(rs.getInt("id"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setEdad(rs.getInt("edad"));
+                alumno.setIdCurso(rs.getInt("idcurso"));
+            };
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return alumno;
     }
 
     @Override
