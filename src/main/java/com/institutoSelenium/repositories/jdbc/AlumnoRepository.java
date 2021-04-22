@@ -6,6 +6,7 @@ import com.institutoSelenium.repositories.interfaces.I_AlumnoRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlumnoRepository implements  I_AlumnoRepository {
@@ -88,17 +89,93 @@ public class AlumnoRepository implements  I_AlumnoRepository {
 
     @Override
     public List<Alumno> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Alumno> lista = new ArrayList();
+        try ( ResultSet rs = conn.createStatement().executeQuery(
+                "select * from ALUMNOS"
+        )){
+            while(rs.next()){
+                Alumno alumno = new Alumno(
+                rs.getInt("id"),
+                rs.getString("nombre"),
+                rs.getString("apellido"),
+                rs.getInt("edad"),
+                rs.getInt("idcurso"));
+                lista.add(alumno);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override
     public List<Alumno> getLikeApellido(String apellido) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Alumno> lista = new ArrayList();
+        try (PreparedStatement ps = conn.prepareStatement(
+            "select * from Alumnos where apellido like ?"
+        )){
+            ps.setString(1, apellido);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                lista.add(new Alumno(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getInt("edad"),
+                        rs.getInt("idcurso")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
+    @Override
+    public List<Alumno>getLikeNombreApellido(String nombre, String apellido){
+        List<Alumno> lista = new ArrayList();
+        try (PreparedStatement ps = conn.prepareStatement(
+                "select * from ALUMNOS where nombre like ? and apellido like ?"
+        )){
+            ps.setString(1, nombre);
+            ps.setString(2, apellido);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                lista.add(new Alumno(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getInt("edad"),
+                        rs.getInt("idcurso")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
     }
 
     @Override
     public List<Alumno> getByCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Alumno> listado = new ArrayList();
+        try (PreparedStatement ps = conn.prepareStatement(
+                "select * from ALUMNOS where idcurso=?"
+        )){
+            ps.setInt(1, curso.getId());
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                listado.add(new Alumno(
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getString("apellido"),
+                        rs.getInt("edad"),
+                        rs.getInt("idcurso")
+                ));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listado;
     }
-
 }
