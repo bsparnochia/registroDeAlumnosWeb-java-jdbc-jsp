@@ -9,5 +9,6 @@ public interface I_AlumnoRepository {
     Alumno getById(int id);
     List<Alumno>getAll();
     List<Alumno>getLikeApellido(String apellido);
+    List<Alumno>getLikeNombreApellido(String nombre, String apellido);
     List<Alumno>getByCurso(Curso curso);
 }
