@@ -1,0 +1,4 @@
+a:hover{
+    background-color: blueviolet;
+    transition: background-color .3s;
+}
