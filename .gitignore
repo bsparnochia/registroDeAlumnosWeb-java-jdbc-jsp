@@ -2,3 +2,4 @@ target/
 nb-configuration.xml
 **/sql/*.sql
 !**/sql/base.sql
+TestFieldMethod.java

@@ -114,7 +114,7 @@ public class AlumnoRepository implements  I_AlumnoRepository {
         try (PreparedStatement ps = conn.prepareStatement(
             "select * from Alumnos where apellido like ?"
         )){
-            ps.setString(1, apellido);
+            ps.setString(1, apellido+"%");
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()){
@@ -136,10 +136,10 @@ public class AlumnoRepository implements  I_AlumnoRepository {
     public List<Alumno>getLikeNombreApellido(String nombre, String apellido){
         List<Alumno> lista = new ArrayList();
         try (PreparedStatement ps = conn.prepareStatement(
-                "select * from ALUMNOS where nombre like ? and apellido like ?"
+                "select * from ALUMNOS where nombre like ?% and apellido like ?%"
         )){
-            ps.setString(1, nombre);
-            ps.setString(2, apellido);
+            ps.setString(1, nombre+"%");
+            ps.setString(2, apellido+"%");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 lista.add(new Alumno(
