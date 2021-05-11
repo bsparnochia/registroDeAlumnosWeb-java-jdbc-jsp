@@ -26,7 +26,7 @@
         <%
             Alumno alumno = ar.getById(Integer.parseInt(request.getParameter("id")));
         %>
-        <form method="POST" action="AlumnosModificacion2.jsp">
+        <form method="post" action="AlumnosModificacion2.jsp">
             <input type="hidden" name="id" value="<% out.print(alumno.getId()); %>"/>
             <table>
                 <tr>

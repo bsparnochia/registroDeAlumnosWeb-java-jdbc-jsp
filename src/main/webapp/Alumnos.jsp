@@ -23,7 +23,7 @@
         <a href="Cursos.jsp">Cursos</a>
         <h1>Registro de Alumnos</h2>
         <div id="main-container">
-            <form method="POST">
+            <form method="post">
                 <table>
                     <tr>
                         <td>Nombre</td>
@@ -72,7 +72,7 @@
             }
         %>
 
-        <form id="form-busqueda-alumnos" method="GET">
+        <form id="form-busqueda-alumnos" method="get">
             <label>Buscar por apellido</label>
             <input name="buscador" type="text" class="input-text">
             <input type="reset" value="limpiar" class="input-button">

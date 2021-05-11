@@ -26,7 +26,7 @@
                 e.printStackTrace();
             }
         %>
-        <form method="GET" action="Alumnos.jsp">
+        <form action="Alumnos.jsp">
             <input type="submit" value="Volver a Alumnos"/>
         </form>
     </body>
