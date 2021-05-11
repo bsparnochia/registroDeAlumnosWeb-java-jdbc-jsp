@@ -5,7 +5,7 @@ import com.institutoSelenium.repositories.interfaces.I_AlumnoRepository;
 import com.institutoSelenium.repositories.jdbc.AlumnoRepository;
 import java.util.List;
 
-public class TestRepository {
+public class TestAlumnoRepository {
     public static void main(String[] args) {
         I_AlumnoRepository ar = new AlumnoRepository(Connector.getConnection());
         
