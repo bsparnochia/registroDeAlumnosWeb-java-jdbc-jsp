@@ -28,10 +28,6 @@
             lista.add(new Alumno(33,"joaquin","espineta",22,9));
             String tablita = new HtmlTable(lista, "AlumnosModificacion.jsp","AlumnosBaja.jsp").getHtmlTable();
             out.println(tablita);
-            
-//allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        %>        
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/5K7bdA-O93k"  allowfullscreen></iframe>
-            
+        %>                    
     </body>
 </html>
