@@ -26,16 +26,16 @@
         <%
             Alumno alumno = ar.getById(Integer.parseInt(request.getParameter("id")));
         %>
-        <form method="post" action="AlumnosModificacion2.jsp">
+        <form method="post" action="AlumnosModificacion2.jsp" id="form-modificacion-alumno">
             <input type="hidden" name="id" value="<% out.print(alumno.getId()); %>"/>
             <table>
                 <tr>
                     <td>Nombre</td>
-                    <td><input type="text" name="nombre" required minlength="3" maxlength="20" placeholder="<% out.print(alumno.getNombre()); %>"/></td>
+                    <td><input type="text" name="nombre" required minlength="3" maxlength="20" value="<% out.print(alumno.getNombre()); %>"/></td>
                 </tr>
                 <tr>
                     <td>Apellido</td>
-                    <td><input type="text" name="apellido" required minlength="3" maxlength="25" placeholder="<% out.print(alumno.getApellido()); %>"/></td>
+                    <td><input type="text" name="apellido" required minlength="3" maxlength="25" value="<% out.print(alumno.getApellido()); %>"/></td>
                 </tr>
                 <tr>
                     <td>Edad</td>

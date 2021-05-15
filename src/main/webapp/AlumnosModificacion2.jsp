@@ -28,7 +28,7 @@
             ar.update(alumnoModificado);
         %>
         <h1>Los cambios se han realizado correctamente</h1>
-        <form action="Alumnos.jsp">
+        <form action="Alumnos.jsp" class="form-volver">
             <input type="submit" value="Volver"/>
         </form>
     </body>

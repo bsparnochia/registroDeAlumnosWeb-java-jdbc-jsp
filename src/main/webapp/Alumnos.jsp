@@ -19,11 +19,12 @@
         <title>Alumnos</title>
     </head>
     <body>
-        <a href="index.html">Inicio</a>
-        <a href="Cursos.jsp">Cursos</a>
+        <a href="index.html" class="link-inicio">Inicio</a>
+        <a href="Cursos.jsp" class="link-cursos">Cursos</a>
         <h1>Registro de Alumnos</h2>
-        <div id="main-container">
-            <form method="post">
+        <h2>Inscripción</h2>
+        <div id="alumnos-principal">
+            <form method="post" id="form-alta-alumno">
                 <table>
                     <tr>
                         <td>Nombre</td>
@@ -38,7 +39,7 @@
                     <tr>
                         <td>Cursos</td>
                         <td>
-                            <select name="idCurso">
+                            <select name="idCurso" class="select-curso">
                                 <%
                                     List<Curso> cursos = cr.getAll();
                                     for (Curso c : cursos) {
@@ -57,6 +58,7 @@
         
         <%
             try {
+                request.setCharacterEncoding("utf-8");
                 String nombre=request.getParameter("nombre");
                 String apellido=request.getParameter("apellido");
                 int edad=Integer.parseInt(request.getParameter("edad"));
@@ -71,9 +73,9 @@
                 e.printStackTrace();
             }
         %>
-
+        <h2>Búsqueda de Alumnos</h2>
         <form id="form-busqueda-alumnos" method="get">
-            <label>Buscar por apellido</label>
+            <label>Apellido</label>
             <input name="buscador" type="text" class="input-text">
             <input type="reset" value="limpiar" class="input-button">
             <input type="submit" value="Enviar" class="input-button">

@@ -6,9 +6,9 @@
 <%@page import="com.institutoSelenium.model.Curso"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.util.Arrays"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.institutoSelenium.enums.Semana"%>
 <%@page import="com.institutoSelenium.enums.Turno" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <% I_CursoRepository cr= new CursoRepository(Connector.getConnection());%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
     <body>
         <h1>Mantenimiento de cursos</h1>
         <h2>Alta de curso</h2>
-        <form id="form-alta">
+        <form id="form-alta" method="post" >
             <table>
                 <tr>
                     <td>Nombre del curso</td>
@@ -32,10 +32,10 @@
                 <tr>
                     <td>Dia</td>
                     <td>
-                        <select name="dia">
+                        <select name="dia" class="select-dia">
                             <%
                                 for(Semana s:Semana.values()){
-                                    out.print("<option value="+s.name()+">"+s.toString().toLowerCase()+"</option>");
+                                    out.print("<option value="+s.toString()+">"+s.toString().toLowerCase()+"</option>");
                                 }
                             %>
                         </select>
@@ -44,10 +44,10 @@
                 <tr>
                     <td>Turno</td>
                     <td>
-                        <select name="turno">
+                        <select name="turno" class="select-turno">
                             <%
                                 for(Turno t:Turno.values()){
-                                    out.print("<option value="+t.name()+">"+t.toString().toLowerCase()+"</option>");
+                                    out.print("<option value="+t.toString()+">"+t.toString().toLowerCase()+"</option>");
                                 }
                             %>
                         </select>
@@ -59,6 +59,7 @@
         </form>
         <%
             try {
+                request.setCharacterEncoding("utf-8");
                 String nombre = request.getParameter("nombre");
                 String profesor = request.getParameter("profesor");
                 if( nombre!=null && profesor!=null){

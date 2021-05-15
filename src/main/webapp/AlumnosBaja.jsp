@@ -25,11 +25,11 @@
                     +", "+al.getEdad()+", "+ al.getIdCurso()+" ?</h3>");
             
         %>
-        <form action="AlumnosBaja2.jsp" method="post">
+        <form action="AlumnosBaja2.jsp" method="post" id="form-baja-alumno">
             <input type="hidden" name="id" value='<%out.print(id);%>'/>
             <input type="submit" value="borrar"/>
         </form>
-            <form action="Alumnos.jsp">
+            <form action="Alumnos.jsp" class="form-volver">
                 <input type="submit" value="volver">
             </form>
     </body>
